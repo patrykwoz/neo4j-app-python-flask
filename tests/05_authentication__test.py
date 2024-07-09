@@ -1,7 +1,7 @@
 import pytest
 
 from api.dao.auth import AuthDAO
-from api.neo4j import get_driver
+from api.neo4j_driver import get_driver
 
 email = 'authenticated@neo4j.com'
 password = 'AuthenticateM3!'

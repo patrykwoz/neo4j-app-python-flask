@@ -13,7 +13,7 @@ from api.exceptions.notfound import NotFoundException
 from .exceptions.badrequest import BadRequestException
 from .exceptions.validation import ValidationException
 
-from .neo4j import init_driver
+from .neo4j_driver import init_driver
 
 from .routes.auth import auth_routes
 from .routes.account import account_routes

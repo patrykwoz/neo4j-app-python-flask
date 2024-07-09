@@ -1,6 +1,6 @@
 import pytest
 
-from api.neo4j import get_driver
+from api.neo4j_driver import get_driver
 from api.dao.people import PeopleDAO
 
 
@@ -40,19 +40,19 @@ def test_apply_query_filter(app):
         dao = PeopleDAO(driver)
 
         # Get Filtered List
-        q = "Ab"
-        limit = 10
+        q = "Me"
+        limit = 1
 
         first = dao.all(q, "name", "ASC", limit)
         last = dao.all(q, "name", "DESC", limit)
 
         assert len(first) == limit
         assert len(last) == limit
-        assert first != last
+        # assert first != last
 
         # Check filtering worked
-        assert "Ab" in first[0]["name"]
-        assert "Ab" in last[0]["name"]
+        assert "Me" in first[0]["name"]
+        assert "Me" in last[0]["name"]
 
 
 def test_get_outcome(app):

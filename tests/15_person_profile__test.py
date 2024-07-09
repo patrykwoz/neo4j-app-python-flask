@@ -1,9 +1,9 @@
 import pytest
 
-from api.neo4j import get_driver
+from api.neo4j_driver import get_driver
 from api.dao.people import PeopleDAO
 
-coppola = "1776"
+coppola = "0000338"
 
 def test_should_find_person_by_id(app):
     with app.app_context():
@@ -18,8 +18,8 @@ def test_should_find_person_by_id(app):
 
         assert output["tmdbId"] == coppola
         assert output["name"] == "Francis Ford Coppola"
-        assert output["directedCount"] == 16
-        assert output["actedCount"] == 2
+        assert output["directedCount"] == 2
+        assert output["actedCount"] == 0
 
 
 def test_should_return_paginated_list_of_similar_people(app):

@@ -2,10 +2,10 @@ import pytest
 
 from api.exceptions.notfound import NotFoundException
 
-from api.neo4j import get_driver
+from api.neo4j_driver import get_driver
 from api.dao.ratings import RatingDAO
 
-pulp_fiction = "680"
+pulp_fiction = "0111161"
 
 def test_get_movie_ratings(app):
     with app.app_context():

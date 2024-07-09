@@ -5,7 +5,7 @@ import pytest
 from dotenv import load_dotenv
 
 from api import create_app
-from api.neo4j import init_driver, close_driver
+from api.neo4j_driver import init_driver, close_driver
 
 @pytest.fixture(scope = 'session', autouse = True)
 def load_env():

@@ -1,6 +1,6 @@
 import pytest
 
-from api.neo4j import get_driver
+from api.neo4j_driver import get_driver
 from api.dao.genres import GenreDAO
 
 def test_return_list_of_genres(app):

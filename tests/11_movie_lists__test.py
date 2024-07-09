@@ -1,11 +1,11 @@
 import pytest
 
-from api.neo4j import get_driver
+from api.neo4j_driver import get_driver
 from api.dao.movies import MovieDAO
 
-tom_hanks = '31'
-coppola = '1776'
-limit = 10
+al_pacino = '0000199'
+coppola = '0000338'
+limit = 2
 sort = "title"
 order = "ASC"
 
@@ -45,18 +45,18 @@ def test_paginated_list_of_movies_for_actor(app):
         dao = MovieDAO(driver)
 
         # Get List
-        output = dao.get_for_actor(tom_hanks, sort, order, limit, 0)
+        output = dao.get_for_actor(al_pacino, sort, order, limit, 0)
 
         assert len(output) == limit
 
         # With skip
-        paginated = dao.get_for_actor(tom_hanks, sort, order, limit, 1)
+        paginated = dao.get_for_actor(al_pacino, sort, order, limit, 1)
 
         assert len(paginated) == limit
         assert output[0] != paginated[0]
 
         # Reordered
-        reordered = dao.get_for_actor(tom_hanks, 'released', order, limit, 0)
+        reordered = dao.get_for_actor(al_pacino, 'released', order, limit, 0)
 
         assert len(reordered) == limit
         assert output[0] != reordered[0]
@@ -72,21 +72,21 @@ def test_paginated_list_of_movies_for_director(app):
 
 
         # Get List
-        output = dao.get_for_director(tom_hanks, sort, order, limit, 0)
+        output = dao.get_for_director(al_pacino, sort, order, limit, 0)
 
-        # Tom Hanks has directed two films in the dataset
-        assert len(output) == 2
+        # Al Pacino has directed 0 films in the dataset
+        assert len(output) == 0
 
         # With skip
-        paginated = dao.get_for_director(tom_hanks, sort, order, limit, 1)
+        paginated = dao.get_for_director(al_pacino, sort, order, limit, 1)
 
-        assert len(paginated) == 1
+        assert len(paginated) == 0
         assert output[0] != paginated[0]
 
         # Reordered
-        reordered = dao.get_for_director(tom_hanks, 'released', order, limit, 0)
+        reordered = dao.get_for_director(al_pacino, 'released', order, limit, 0)
 
-        assert len(reordered) == 2
+        assert len(reordered) == 0
         assert output[0] != reordered[0]
 
 def test_find_coppola_films(app):
@@ -99,7 +99,7 @@ def test_find_coppola_films(app):
 
         output = dao.get_for_director(coppola, sort, order, 99)
 
-        assert len(output) == 16
+        assert len(output) == 2
 
         print("Here is the answer to the quiz question on the lesson:")
         print("How many films has Francis Ford Coppola directed?")

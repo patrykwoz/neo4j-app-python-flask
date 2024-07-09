@@ -1,6 +1,6 @@
 import pytest
 
-from api.neo4j import close_driver, get_driver
+from api.neo4j_driver import close_driver, get_driver
 from api.dao.movies import MovieDAO
 
 def test_pagination(app):
