@@ -3,7 +3,7 @@ from api.data import popular, goodfellas
 from api.exceptions.notfound import NotFoundException
 from api.data import popular
 
-class MovieDAO:
+class MovieDAO: .
     """
     The constructor expects an instance of the Neo4j Driver, which will be
     used to interact with Neo4j.
